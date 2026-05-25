@@ -96,7 +96,7 @@ require_once __DIR__ . '/../includes/header.php';
                     </div>
                 <?php endif; ?>
 
-                <form method="POST">
+                <form method="POST" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Takip Numarası</label>

@@ -57,10 +57,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <td><?= htmlspecialchars($s['warehouse_name']) ?></td>
                     <td class="text-center">
                         <a href="edit.php?id=<?= $s['id'] ?>" class="btn btn-warning btn-sm">Düzenle</a>
-                        <form method="POST" action="delete.php" class="d-inline" onsubmit="return confirm('Bu sevkiyatı silmek istediğinize emin misiniz?');">
-                            <input type="hidden" name="id" value="<?= $s['id'] ?>">
-                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-                        </form>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $s['id'] ?>" data-action="delete.php">Sil</button>
                     </td>
                 </tr>
                 <?php endforeach; ?>

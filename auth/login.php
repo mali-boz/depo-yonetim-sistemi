@@ -73,7 +73,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                 <?php endif; ?>
 
-                <form method="POST">
+                <form method="POST" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label class="form-label">E-posta</label>
                         <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($email) ?>" required>

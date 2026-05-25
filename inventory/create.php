@@ -84,7 +84,7 @@ require_once __DIR__ . '/../includes/header.php';
                     </div>
                 <?php endif; ?>
 
-                <form method="POST">
+                <form method="POST" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label class="form-label">Kalem Adı</label>
                         <input type="text" name="item_name" class="form-control" value="<?= htmlspecialchars($item_name) ?>" required>

@@ -46,10 +46,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <td><?= date('d.m.Y H:i', strtotime($item['updated_at'])) ?></td>
                     <td class="text-center">
                         <a href="edit.php?id=<?= $item['id'] ?>" class="btn btn-warning btn-sm">Düzenle</a>
-                        <form method="POST" action="delete.php" class="d-inline" onsubmit="return confirm('Bu envanter kalemini silmek istediğinize emin misiniz?');">
-                            <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-                        </form>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $item['id'] ?>" data-action="delete.php">Sil</button>
                     </td>
                 </tr>
                 <?php endforeach; ?>

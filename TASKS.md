@@ -69,11 +69,11 @@
 
 ## PHASE 6 — UI Polish & Doğrulama
 
-- [ ] **G1** Tüm formlara Bootstrap doğrulama sınıfları ekle (`is-invalid`, `invalid-feedback`).
-- [ ] **G2** Flash mesajları Bootstrap `alert` componenti ile göster (success / danger).
-- [ ] **G3** Silme aksiyonlarına onay modalı ekle (Bootstrap Modal + küçük JS snippet).
-- [ ] **G4** Dashboard'a özet kartlar ekle: toplam depo sayısı, aktif sevkiyat sayısı, toplam envanter kalemi.
-- [ ] **G5** Tüm sayfalarda stilsiz (Bootstrap tarafından kapsanmayan) HTML elementi olmadığını kontrol et.
+- [x] **G1** Tüm formlara Bootstrap doğrulama sınıfları ekle (`is-invalid`, `invalid-feedback`).
+- [x] **G2** Flash mesajları Bootstrap `alert` componenti ile göster (success / danger).
+- [x] **G3** Silme aksiyonlarına onay modalı ekle (Bootstrap Modal + küçük JS snippet).
+- [x] **G4** Dashboard'a özet kartlar ekle: toplam depo sayısı, aktif sevkiyat sayısı, toplam envanter kalemi.
+- [x] **G5** Tüm sayfalarda stilsiz (Bootstrap tarafından kapsanmayan) HTML elementi olmadığını kontrol et.
 - [ ] **G6** Mobil uyumluluğu test et: navbar collapse çalışıyor mu? Tablolar küçük ekranda okunabilir mi?
 
 ---
