@@ -47,22 +47,22 @@
 
 ## PHASE 4 — Shipment CRUD
 
-- [ ] **E1** `classes/Shipment.php` → `getAll($userId)`, `getById($id)`, `create($data)`, `update($id, $data)`, `delete($id)` metodları.
-- [ ] **E2** `shipments/index.php` → Sevkiyatları tablo olarak listele. Durum badge'i (beklemede / yolda / teslim edildi).
-- [ ] **E3** `shipments/create.php` → Form (takip no, kaynak, hedef, ağırlık kg, durum, depo seçimi). Depo dropdown'u sadece kullanıcının kendi depolarını göstersin.
-- [ ] **E4** `shipments/edit.php` → Mevcut veriyi doldur, güncelle. Yetki kontrolü.
-- [ ] **E5** `shipments/delete.php` → POST tabanlı silme. Yetki kontrolü.
+- [x] **E1** `classes/Shipment.php` → `getAll($userId)`, `getById($id)`, `create($data)`, `update($id, $data)`, `delete($id)` metodları.
+- [x] **E2** `shipments/index.php` → Sevkiyatları tablo olarak listele. Durum badge'i (beklemede / yolda / teslim edildi).
+- [x] **E3** `shipments/create.php` → Form (takip no, kaynak, hedef, ağırlık kg, durum, depo seçimi). Depo dropdown'u sadece kullanıcının kendi depolarını göstersin.
+- [x] **E4** `shipments/edit.php` → Mevcut veriyi doldur, güncelle. Yetki kontrolü.
+- [x] **E5** `shipments/delete.php` → POST tabanlı silme. Yetki kontrolü.
 - [ ] **E6** Shipment CRUD'u uçtan uca test et.
 
 ---
 
 ## PHASE 5 — Inventory CRUD
 
-- [ ] **F1** `classes/Inventory.php` → `getAll($userId)`, `getById($id)`, `create($data)`, `update($id, $data)`, `delete($id)` metodları.
-- [ ] **F2** `inventory/index.php` → Envanter kalemlerini tablo olarak listele (kalem adı, miktar, birim, bağlı depo).
-- [ ] **F3** `inventory/create.php` → Form (kalem adı, miktar, birim, depo seçimi).
-- [ ] **F4** `inventory/edit.php` → Güncelleme formu. `last_updated_by` ve `updated_at` alanlarını set et.
-- [ ] **F5** `inventory/delete.php` → POST tabanlı silme.
+- [x] **F1** `classes/Inventory.php` → `getAll($userId)`, `getById($id)`, `create($data)`, `update($id, $data)`, `delete($id)` metodları.
+- [x] **F2** `inventory/index.php` → Envanter kalemlerini tablo olarak listele (kalem adı, miktar, birim, bağlı depo).
+- [x] **F3** `inventory/create.php` → Form (kalem adı, miktar, birim, depo seçimi).
+- [x] **F4** `inventory/edit.php` → Güncelleme formu. `last_updated_by` ve `updated_at` alanlarını set et.
+- [x] **F5** `inventory/delete.php` → POST tabanlı silme.
 - [ ] **F6** Inventory CRUD'u uçtan uca test et.
 
 ---

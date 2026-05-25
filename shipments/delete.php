@@ -1,19 +1,28 @@
 <?php
 /**
  * shipments/delete.php — Sevkiyat silme (DELETE)
- *
- * TODO:
- * - auth_guard.php dahil et
- * - functions.php, Shipment.php dahil et
- *
- * - Yalnızca POST isteklerini kabul et
- *   - GET isteği gelirse shipments/index.php'ye yönlendir
- *
- * - CSRF token doğrula
- * - $_POST['id'] ile sevkiyat ID'sini al ve intval() ile integer'a çevir
- *
- * - Shipment::delete($id) çağır
- * - Başarılıysa flash('success', 'Sevkiyat başarıyla silindi.')
- * - Başarısızsa flash('error', 'Sevkiyat silinirken bir hata oluştu.')
- * - shipments/index.php'ye yönlendir
  */
+require_once __DIR__ . '/../includes/auth_guard.php';
+require_once __DIR__ . '/../classes/Shipment.php';
+require_once __DIR__ . '/../includes/functions.php';
+
+// Yalnızca POST kabul et
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: index.php');
+    exit;
+}
+
+$userId = $_SESSION['user_id'];
+$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+
+$shipment = new Shipment();
+$result = $shipment->delete($id, $userId);
+
+if ($result) {
+    setFlash('success', 'Sevkiyat başarıyla silindi.');
+} else {
+    setFlash('error', 'Sevkiyat silinemedi veya erişim yetkiniz yok.');
+}
+
+header('Location: index.php');
+exit;

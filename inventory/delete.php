@@ -1,19 +1,28 @@
 <?php
 /**
  * inventory/delete.php — Envanter kalemi silme (DELETE)
- *
- * TODO:
- * - auth_guard.php dahil et
- * - functions.php, Inventory.php dahil et
- *
- * - Yalnızca POST isteklerini kabul et
- *   - GET isteği gelirse inventory/index.php'ye yönlendir
- *
- * - CSRF token doğrula
- * - $_POST['id'] ile envanter ID'sini al ve intval() ile integer'a çevir
- *
- * - Inventory::delete($id) çağır
- * - Başarılıysa flash('success', 'Envanter kalemi başarıyla silindi.')
- * - Başarısızsa flash('error', 'Envanter kalemi silinirken bir hata oluştu.')
- * - inventory/index.php'ye yönlendir
  */
+require_once __DIR__ . '/../includes/auth_guard.php';
+require_once __DIR__ . '/../classes/Inventory.php';
+require_once __DIR__ . '/../includes/functions.php';
+
+// Yalnızca POST kabul et
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: index.php');
+    exit;
+}
+
+$userId = $_SESSION['user_id'];
+$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+
+$inventory = new Inventory();
+$result = $inventory->delete($id, $userId);
+
+if ($result) {
+    setFlash('success', 'Envanter kalemi başarıyla silindi.');
+} else {
+    setFlash('error', 'Envanter silinemedi veya erişim yetkiniz yok.');
+}
+
+header('Location: index.php');
+exit;
