@@ -1,0 +1,16 @@
+/**
+ * style.css — Bootstrap 5 üzerine özel stil tanımları
+ *
+ * TODO:
+ * - Navbar marka rengi özelleştirmesi (ör: özel gradient veya renk)
+ * - Kartlar için hafif gölge efekti (box-shadow)
+ * - Tablo satırları için hover efekti
+ * - Flash mesaj alert'leri için geçiş animasyonu (fade-in)
+ * - Footer sabit alt pozisyon ayarı (sticky footer)
+ * - Form elemanları için odak (focus) stili
+ * - Genel boşluk ve hizalama düzeltmeleri
+ *
+ * NOT: Bootstrap 5 CDN tüm temel stilleri sağlar.
+ * Bu dosya yalnızca ince ayar ve marka özelleştirmeleri içindir.
+ * Mümkün olduğunca Bootstrap utility sınıflarını tercih edin.
+ */

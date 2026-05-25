@@ -1,0 +1,14 @@
+# Real credentials — NEVER commit
+config/config.php
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
