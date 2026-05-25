@@ -36,11 +36,11 @@
 
 ## PHASE 3 — Warehouse CRUD
 
-- [ ] **D1** `classes/Warehouse.php` → `getAll($userId)`, `getById($id)`, `create($data)`, `update($id, $data)`, `delete($id)` metodları. Her sorguda `created_by` kontrolü yap (başka kullanıcının deposunu göremez).
-- [ ] **D2** `warehouses/index.php` → Kullanıcının depolarını tablo olarak listele. "Yeni Depo" butonu. Her satırda Düzenle / Sil aksiyonları.
-- [ ] **D3** `warehouses/create.php` → Form (ad, konum, kapasite m³). POST'ta doğrula, kaydet, listeye yönlendir + flash mesaj.
-- [ ] **D4** `warehouses/edit.php` → `?id=` parametresiyle mevcut veriyi doldur. POST'ta güncelle. Yetki kontrolü: sadece kendi deposu.
-- [ ] **D5** `warehouses/delete.php` → POST tabanlı silme (GET ile silme yapma). Yetki kontrolü. Listeye yönlendir + flash mesaj.
+- [x] **D1** `classes/Warehouse.php` → `getAll($userId)`, `getById($id)`, `create($data)`, `update($id, $data)`, `delete($id)` metodları. Her sorguda `created_by` kontrolü yap (başka kullanıcının deposunu göremez).
+- [x] **D2** `warehouses/index.php` → Kullanıcının depolarını tablo olarak listele. "Yeni Depo" butonu. Her satırda Düzenle / Sil aksiyonları.
+- [x] **D3** `warehouses/create.php` → Form (ad, konum, kapasite m³). POST'ta doğrula, kaydet, listeye yönlendir + flash mesaj.
+- [x] **D4** `warehouses/edit.php` → `?id=` parametresiyle mevcut veriyi doldur. POST'ta güncelle. Yetki kontrolü: sadece kendi deposu.
+- [x] **D5** `warehouses/delete.php` → POST tabanlı silme (GET ile silme yapma). Yetki kontrolü. Listeye yönlendir + flash mesaj.
 - [ ] **D6** Warehouse CRUD'u uçtan uca test et.
 
 ---
