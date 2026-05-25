@@ -18,3 +18,9 @@
 // TODO: Uygulama sabitleri
 // define('APP_NAME', 'Depo Yönetim Sistemi');
 // define('BASE_URL', 'http://localhost/depo-yonetim/');
+
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'veritabani_adi');
+define('DB_USER', 'kullanici_adi');
+define('DB_PASS', 'sifre');
+define('DB_CHARSET', 'utf8mb4');

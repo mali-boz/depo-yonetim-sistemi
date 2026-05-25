@@ -7,3 +7,4 @@
  * - Kullanıcı oturum açmışsa dashboard.php'ye yönlendir
  * - Oturum açmamışsa auth/login.php'ye yönlendir
  */
+ echo "TEST"; ?>
