@@ -1,18 +1,17 @@
 <?php
 /**
  * footer.php — Ortak sayfa altlığı
- *
- * TODO:
- * - </main> etiketini kapat (header.php'de açılan container)
- *
- * - <footer> bölümü oluştur:
- *   - Bootstrap container ile ortala
- *   - Telif hakkı metni: "© " . date('Y') . " " . APP_NAME
- *   - text-center ve text-muted sınıfları ile stillendir
- *   - mt-5 py-3 border-top ile üst kenarlık ekle
- *
- * - Bootstrap 5 JS Bundle CDN ekle (script tag, defer veya body sonunda)
- *   - Navbar toggler ve diğer Bootstrap JS bileşenleri için gerekli
- *
- * - </body> ve </html> etiketlerini kapat
  */
+?>
+</main> <!-- Ana İçerik Konteyneri Kapanışı (header.php'den) -->
+
+<footer class="mt-5 py-4 border-top bg-white text-center text-muted">
+    <div class="container">
+        <small>&copy; <?= date('Y') ?> Depo Yönetim Sistemi. Tüm hakları saklıdır.</small>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 JS Bundle (Popper.js dahildir) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

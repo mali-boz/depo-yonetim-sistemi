@@ -1,16 +1,30 @@
 /**
  * style.css — Bootstrap 5 üzerine özel stil tanımları
- *
- * TODO:
- * - Navbar marka rengi özelleştirmesi (ör: özel gradient veya renk)
- * - Kartlar için hafif gölge efekti (box-shadow)
- * - Tablo satırları için hover efekti
- * - Flash mesaj alert'leri için geçiş animasyonu (fade-in)
- * - Footer sabit alt pozisyon ayarı (sticky footer)
- * - Form elemanları için odak (focus) stili
- * - Genel boşluk ve hizalama düzeltmeleri
- *
- * NOT: Bootstrap 5 CDN tüm temel stilleri sağlar.
- * Bu dosya yalnızca ince ayar ve marka özelleştirmeleri içindir.
- * Mümkün olduğunca Bootstrap utility sınıflarını tercih edin.
  */
+
+/* Marka yazısını biraz kalın yapalım */
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Kartlara hover olunca tatlı bir gölge ve yukarı kalkma efekti */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Tablolarda satır üzerine gelince belirgin hover */
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+/* Ana form alanları odaktayken (focus) gölge rengi */
+.form-control:focus, .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}

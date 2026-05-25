@@ -1,17 +1,16 @@
 <?php
 /**
  * index.php — Ana giriş noktası / Yönlendirme
- *
- * TODO:
- * - session_start() çağır
- * - Kullanıcı oturum açmışsa dashboard.php'ye yönlendir
- * - Oturum açmamışsa auth/login.php'ye yönlendir
  */
-require_once 'classes/Database.php';
+require_once __DIR__ . '/classes/Auth.php';
 
-try {
-    $db = Database::getInstance()->getConnection();
-    echo "Veritabanı bağlantısı başarılı.";
-} catch (Exception $e) {
-    echo "Hata: " . $e->getMessage();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
+
+if (Auth::isLoggedIn()) {
+    header('Location: dashboard.php');
+} else {
+    header('Location: auth/login.php');
+}
+exit;

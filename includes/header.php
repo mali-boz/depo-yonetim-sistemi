@@ -1,33 +1,98 @@
 <?php
 /**
  * header.php — Ortak sayfa başlığı ve navigasyon
- *
- * TODO:
- * - session_start() çağır (oturum zaten aktif değilse)
- * - config.php dosyasını dahil et (require_once)
- * - functions.php dosyasını dahil et (require_once)
- *
- * - <!DOCTYPE html> ve <html lang="tr"> çıktısı ver
- * - <head> bölümü:
- *   - <meta charset="UTF-8">
- *   - <meta name="viewport" content="width=device-width, initial-scale=1.0">
- *   - <title> etiketi: sayfa başlığı veya APP_NAME sabiti
- *   - Bootstrap 5 CSS CDN bağlantısı (link tag)
- *   - assets/css/style.css bağlantısı (link tag)
- *
- * - <body> aç
- * - Bootstrap navbar oluştur (navbar-expand-lg, navbar-dark, bg-dark):
- *   - Marka adı: APP_NAME sabiti, ana sayfaya link
- *   - Mobil hamburger menü butonu (navbar-toggler)
- *   - Navigasyon linkleri:
- *     - Anasayfa (dashboard.php)
- *     - Depolar (warehouses/index.php)
- *     - Sevkiyatlar (shipments/index.php)
- *     - Envanter (inventory/index.php)
- *   - Sağ taraf (navbar-nav ms-auto):
- *     - Oturum açıksa: kullanıcı adı göster + Çıkış linki (auth/logout.php)
- *     - Oturum kapalıysa: Giriş (auth/login.php) + Kayıt (auth/register.php)
- *
- * - <main class="container mt-4"> aç (footer.php'de kapatılacak)
- * - Flash mesajları varsa Bootstrap alert ile göster
  */
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once __DIR__ . '/../classes/Auth.php';
+require_once __DIR__ . '/functions.php';
+
+// BASE_URL belirleme (klasör derinliğinden bağımsız çalışması için)
+// Proje root dizinine göre bir baseUrl hesaplıyoruz
+$baseDir = dirname($_SERVER['SCRIPT_NAME']);
+$baseUrl = '/'; 
+if (strpos($baseDir, 'depo-yonetim') !== false) {
+    $parts = explode('depo-yonetim', $baseDir);
+    $baseUrl = $parts[0] . 'depo-yonetim/';
+}
+
+$pageTitle = $pageTitle ?? 'Depo Yönetim Sistemi';
+$isLoggedIn = Auth::isLoggedIn();
+$userName = $isLoggedIn ? $_SESSION['user_name'] : '';
+?>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= htmlspecialchars($pageTitle) ?></title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Özel Stiller -->
+    <link href="<?= $baseUrl ?>assets/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<!-- Ortak Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="<?= $baseUrl ?>dashboard.php">Depo Yönetim</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <?php if ($isLoggedIn): ?>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $baseUrl ?>dashboard.php">Anasayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $baseUrl ?>warehouses/index.php">Depolar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $baseUrl ?>shipments/index.php">Sevkiyatlar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $baseUrl ?>inventory/index.php">Envanter</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <span class="nav-link text-light"><?= htmlspecialchars($userName) ?></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-warning" href="<?= $baseUrl ?>auth/logout.php">Çıkış</a>
+                </li>
+            </ul>
+            <?php else: ?>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $baseUrl ?>auth/login.php">Giriş Yap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $baseUrl ?>auth/register.php">Kayıt Ol</a>
+                </li>
+            </ul>
+            <?php endif; ?>
+        </div>
+    </div>
+</nav>
+
+<!-- Ana İçerik Konteyneri -->
+<main class="container">
+    <!-- Ortak Flash Mesaj Alanı -->
+    <?php if ($successMsg = getFlash('success')): ?>
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <?= htmlspecialchars($successMsg) ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Kapat"></button>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($errorMsg = getFlash('error')): ?>
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <?= htmlspecialchars($errorMsg) ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Kapat"></button>
+        </div>
+    <?php endif; ?>

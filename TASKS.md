@@ -2,35 +2,35 @@
 
 ## PHASE 0 — Ortam & Yapılandırma
 
-- [ ] **A1** `config/config.php` oluştur (DB host, name, user, pass sabitleri). Bu dosyayı `.gitignore`'a ekle.
-- [ ] **A2** `config/config.example.php`'yi doldur (gerçek değer yok, sadece anahtar isimler ve dummy değerler).
-- [ ] **A3** `.gitignore`'u kontrol et: `config/config.php`, `.env`, geçici dosyalar kapsanıyor mu?
-- [ ] **A4** `classes/Database.php` yaz: PDO bağlantısı, singleton ya da basit factory. `config.php`'yi `require` et.
-- [ ] **A5** Veritabanını oluştur: `users`, `warehouses`, `shipments`, `inventory` tablolarını çalıştır.
-- [ ] **A6** Lokal ortamı doğrula: XAMPP/Laragon/Docker ile `index.php` açılıyor mu?
+- [x] **A1** `config/config.php` oluştur (DB host, name, user, pass sabitleri). Bu dosyayı `.gitignore`'a ekle.
+- [x] **A2** `config/config.example.php`'yi doldur (gerçek değer yok, sadece anahtar isimler ve dummy değerler).
+- [x] **A3** `.gitignore`'u kontrol et: `config/config.php`, `.env`, geçici dosyalar kapsanıyor mu?
+- [x] **A4** `classes/Database.php` yaz: PDO bağlantısı, singleton ya da basit factory. `config.php`'yi `require` et.
+- [x] **A5** Veritabanını oluştur: `users`, `warehouses`, `shipments`, `inventory` tablolarını çalıştır.
+- [x] **A6** Lokal ortamı doğrula: XAMPP/Laragon/Docker ile `index.php` açılıyor mu?
 
 ---
 
 ## PHASE 1 — Kimlik Doğrulama (Auth)
 
-- [ ] **B1** `classes/User.php` → `findByEmail()`, `create()` metodları.
-- [ ] **B2** `classes/Auth.php` → `login()`, `logout()`, `isLoggedIn()`, `currentUser()` metodları. `session_start()` sadece burada çağrılsın.
-- [ ] **B3** `auth/register.php` → Form göster + POST işle. `password_hash()` ile şifrele. E-posta benzersizliği kontrol et. Başarıda login'e yönlendir.
-- [ ] **B4** `auth/login.php` → Form göster + POST işle. `password_verify()` kullan. Session'a `user_id` yaz. Başarıda `dashboard.php`'ye yönlendir.
-- [ ] **B5** `auth/logout.php` → Session'ı yok et, `index.php`'ye yönlendir.
-- [ ] **B6** `includes/auth_guard.php` → Oturum yoksa `login.php`'ye yönlendir. Her korumalı sayfanın tepesine `require` edilecek.
-- [ ] **B7** `dashboard.php` → `auth_guard.php` require et. Temel bir karşılama mesajı ve navigasyon göster.
-- [ ] **B8** Auth akışını uçtan uca test et: kayıt → giriş → çıkış → korumalı sayfaya erişim engeli.
+- [x] **B1** `classes/User.php` → `findByEmail()`, `create()` metodları.
+- [x] **B2** `classes/Auth.php` → `login()`, `logout()`, `isLoggedIn()`, `currentUser()` metodları. `session_start()` sadece burada çağrılsın.
+- [x] **B3** `auth/register.php` → Form göster + POST işle. `password_hash()` ile şifrele. E-posta benzersizliği kontrol et. Başarıda login'e yönlendir.
+- [x] **B4** `auth/login.php` → Form göster + POST işle. `password_verify()` kullan. Session'a `user_id` yaz. Başarıda `dashboard.php`'ye yönlendir.
+- [x] **B5** `auth/logout.php` → Session'ı yok et, `index.php`'ye yönlendir.
+- [x] **B6** `includes/auth_guard.php` → Oturum yoksa `login.php`'ye yönlendir. Her korumalı sayfanın tepesine `require` edilecek.
+- [x] **B7** `dashboard.php` → `auth_guard.php` require et. Temel bir karşılama mesajı ve navigasyon göster.
+- [x] **B8** Auth akışını uçtan uca test et: kayıt → giriş → çıkış → korumalı sayfaya erişim engeli.
 
 ---
 
 ## PHASE 2 — Header / Footer / Genel Layout
 
-- [ ] **C1** `includes/header.php` → Bootstrap 5 CDN, navbar (marka adı, depo/sevkiyat/envanter linkleri, kullanıcı adı + çıkış). `$pageTitle` değişkenini `<title>` için kullan.
-- [ ] **C2** `includes/footer.php` → Bootstrap JS bundle CDN. İsteğe bağlı kısa footer.
-- [ ] **C3** `includes/functions.php` → Yardımcı fonksiyonlar: `sanitize()`, `redirect()`, `setFlash()`, `getFlash()` (session tabanlı flash mesaj).
-- [ ] **C4** `assets/css/style.css` → Sadece Bootstrap üzerine küçük override'lar (Bootstrap'ın tamamen değil, tamamlayacak şekilde).
-- [ ] **C5** `index.php` → Oturum varsa dashboard'a, yoksa login sayfasına yönlendir.
+- [x] **C1** `includes/header.php` → Bootstrap 5 CDN, navbar (marka adı, depo/sevkiyat/envanter linkleri, kullanıcı adı + çıkış). `$pageTitle` değişkenini `<title>` için kullan.
+- [x] **C2** `includes/footer.php` → Bootstrap JS bundle CDN. İsteğe bağlı kısa footer.
+- [x] **C3** `includes/functions.php` → Yardımcı fonksiyonlar: `sanitize()`, `redirect()`, `setFlash()`, `getFlash()` (session tabanlı flash mesaj).
+- [x] **C4** `assets/css/style.css` → Sadece Bootstrap üzerine küçük override'lar (Bootstrap'ın tamamen değil, tamamlayacak şekilde).
+- [x] **C5** `index.php` → Oturum varsa dashboard'a, yoksa login sayfasına yönlendir.
 
 ---
 
