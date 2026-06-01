@@ -15,7 +15,10 @@ require_once __DIR__ . '/../includes/header.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="mb-0">Envanter Kalemleri</h2>
-    <a href="create.php" class="btn btn-success">+ Yeni Kalem Ekle</a>
+    <div class="d-flex gap-2 align-items-center">
+        <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Ara..." style="width: 200px;">
+        <a href="create.php" class="btn btn-success">+ Yeni Kalem Ekle</a>
+    </div>
 </div>
 
 <?php if (empty($items)): ?>

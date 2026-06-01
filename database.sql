@@ -34,25 +34,7 @@ CREATE TABLE IF NOT EXISTS `warehouses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- -----------------------------------------------------------
--- 3. Sevkiyatlar tablosu
--- -----------------------------------------------------------
-CREATE TABLE IF NOT EXISTS `shipments` (
-    `id`           INT AUTO_INCREMENT PRIMARY KEY,
-    `tracking_no`  VARCHAR(50)    NOT NULL,
-    `origin`       VARCHAR(255)   NOT NULL,
-    `destination`  VARCHAR(255)   NOT NULL,
-    `weight_kg`    DECIMAL(10,2)  NOT NULL DEFAULT 0.00,
-    `status`       ENUM('beklemede','yolda','teslim edildi') NOT NULL DEFAULT 'beklemede',
-    `warehouse_id` INT            NOT NULL,
-    `created_by`   INT            NOT NULL,
-    `created_at`   DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (`warehouse_id`) REFERENCES `warehouses`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`created_by`)   REFERENCES `users`(`id`)      ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- -----------------------------------------------------------
--- 4. Envanter tablosu
+-- 3. Envanter tablosu
 -- -----------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `inventory` (
     `id`              INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,4 +49,33 @@ CREATE TABLE IF NOT EXISTS `inventory` (
     FOREIGN KEY (`last_updated_by`) REFERENCES `users`(`id`)      ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- -----------------------------------------------------------
+-- 4. Sevkiyatlar tablosu
+-- -----------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `shipments` (
+    `id`           INT AUTO_INCREMENT PRIMARY KEY,
+    `tracking_no`  VARCHAR(50)    NOT NULL,
+    `direction`    ENUM('gelen','giden') NOT NULL DEFAULT 'giden',
+    `origin`       VARCHAR(255)   NOT NULL,
+    `destination`  VARCHAR(255)   NOT NULL,
+    `weight_kg`    DECIMAL(10,2)  NOT NULL DEFAULT 0.00,
+    `status`       ENUM('beklemede','yolda','teslim edildi') NOT NULL DEFAULT 'beklemede',
+    `warehouse_id` INT            NOT NULL,
+    `inventory_id` INT            NULL,
+    `created_by`   INT            NOT NULL,
+    `created_at`   DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (`warehouse_id`) REFERENCES `warehouses`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`inventory_id`) REFERENCES `inventory`(`id`)  ON DELETE SET NULL,
+    FOREIGN KEY (`created_by`)   REFERENCES `users`(`id`)      ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ============================================================
+-- MİGRASYON: Mevcut veritabanına yeni sütun ekleme
+-- (Eğer tablolar zaten varsa aşağıdaki komutları çalıştırın)
+-- ============================================================
+-- ALTER TABLE shipments ADD COLUMN direction ENUM('gelen','giden') NOT NULL DEFAULT 'giden' AFTER tracking_no;
+-- ALTER TABLE shipments ADD COLUMN inventory_id INT NULL AFTER warehouse_id;
+-- ALTER TABLE shipments ADD FOREIGN KEY (inventory_id) REFERENCES inventory(id) ON DELETE SET NULL;

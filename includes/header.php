@@ -9,13 +9,17 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/../classes/Auth.php';
 require_once __DIR__ . '/functions.php';
 
-// BASE_URL belirleme (klasör derinliğinden bağımsız çalışması için)
-// Proje root dizinine göre bir baseUrl hesaplıyoruz
-$baseDir = dirname($_SERVER['SCRIPT_NAME']);
-$baseUrl = '/'; 
-if (strpos($baseDir, 'depo-yonetim') !== false) {
-    $parts = explode('depo-yonetim', $baseDir);
-    $baseUrl = $parts[0] . 'depo-yonetim/';
+// BASE_URL belirleme (Klasör derinliğini URL üzerinden hesaplayalım)
+// Projedeki alt klasörlerimiz bellidir:
+$subFolders = ['auth', 'inventory', 'shipments', 'warehouses'];
+$currentDir = basename(dirname($_SERVER['SCRIPT_NAME']));
+
+if (in_array($currentDir, $subFolders)) {
+    // Eğer bu alt klasörlerden birindeysek, bir üst dizine çıkmamız gerek
+    $baseUrl = '../';
+} else {
+    // Kök dizindeysek (dashboard.php, index.php vb)
+    $baseUrl = './';
 }
 
 $pageTitle = $pageTitle ?? 'Depo Yönetim Sistemi';

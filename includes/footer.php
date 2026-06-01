@@ -69,6 +69,21 @@ document.addEventListener('DOMContentLoaded', function() {
             modalInputId.value = recordId;
         });
     }
+
+    // Tablo Arama Fonksiyonu
+    var searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', function() {
+            var filter = this.value.toLowerCase().trim();
+            var table = document.querySelector('.table tbody');
+            if (!table) return;
+            var rows = table.querySelectorAll('tr');
+            rows.forEach(function(row) {
+                var text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+    }
 });
 </script>
 </body>
