@@ -5,7 +5,7 @@ Bu proje, bir lojistik veya depo firmasının kendi depolarını, envanter kalem
 🌍 **Canlı Demo:** http://95.130.171.20/~st24360859078/
 *(Not: Hosting ortamında test edilmek üzere yüklenmiştir.)*
 
-🎥 **Tanıtım Videosu:** [YouTube Linkini Buraya Ekle](#)
+🎥 **Tanıtım Videosu:** [https://www.youtube.com/watch?v=1BSUEsKapMY](#)
 
 ---
 
